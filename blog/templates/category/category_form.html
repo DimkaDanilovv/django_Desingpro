@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidebar %}
+    <div class="list-group">
+		<a href="{% url 'profile' %}" class="list-group-item list-group-item-action" aria-current="true">Профиль</a>
+		<a href="{% url 'post_list' %}" class="list-group-item list-group-item-action">Все заявки</a>
+		<a href="{% url 'category_list' %}" class="list-group-item list-group-item-action">Все категории</a>
+		<a href="{% url 'category_create' %}" class="list-group-item list-group-item-action">Создать категорию</a>
+	</div>
+{% endblock %}
+
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Category create</legend>
+                <div class = "block">
+                    <label for = "entrance" >Название: </label>
+                    <input type="text" id="entrance" required>
+                </div>
+                <div class = "block">
+                    <label for = "entrance1" >Описание: </label>
+                    <input type="text" id="entrance1" required>
+                </div>
+                <div class = "block">
+                    <label for = "entrance2" >Добавьте фото: </label>
+                    <input type="text" id="entrance2" required>
+                </div>
+                <div class = "block">
+                    <label for = "entrance3" >Выберите категорию: </label>
+                    <input type="text" id="entrance3" required>
+                </div>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
